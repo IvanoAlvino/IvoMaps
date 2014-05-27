@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/IvoMaps.iml" filepath="$PROJECT_DIR$/IvoMaps.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ivomaps/ivomaps.iml" filepath="$PROJECT_DIR$/ivomaps/ivomaps.iml" />
+    </modules>
+  </component>
+</project>
+
