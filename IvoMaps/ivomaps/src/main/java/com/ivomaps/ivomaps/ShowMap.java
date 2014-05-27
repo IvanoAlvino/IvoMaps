@@ -5,15 +5,37 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.maps.GoogleMap;
+
+import com.google.android.gms.maps.MapFragment;
+
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 
 public class ShowMap extends ActionBarActivity {
+
+    private GoogleMap mMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_map);
+        setUpMap();
     }
 
+
+    private void setUpMap() {
+        if (mMap == null) {
+            // the map is not set yet, let's set it now
+            mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
+                    .getMap();
+        }
+        if (mMap != null) {
+            // if map has been set, let's set up the marker
+            mMap.addMarker(new MarkerOptions().position(new LatLng(37.178531, -3.606279)).title("Casa"));
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
