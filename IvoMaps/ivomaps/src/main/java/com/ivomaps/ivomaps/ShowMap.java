@@ -22,6 +22,8 @@ public class ShowMap extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_map);
         setUpMap();
+        // obtainJSON();
+        setMarkersInRadius(Int radius);
     }
 
 
@@ -31,8 +33,13 @@ public class ShowMap extends ActionBarActivity {
             mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
                     .getMap();
         }
+    }
+
+    private void setMarkersInRadius(Int radius) {
         if (mMap != null) {
-            // if map has been set, let's set up the marker
+            // --if map has been set, let's set up the marker looking by radius--
+            // cerco in tutto il vettore ottenuto dal JSON i posti
+            // con distanza minore di 'radius', e per ognuno addMarker()
             mMap.addMarker(new MarkerOptions().position(new LatLng(37.178531, -3.606279)).title("Casa"));
         }
     }
