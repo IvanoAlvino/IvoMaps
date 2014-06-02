@@ -13,6 +13,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 
@@ -26,7 +27,7 @@ public class ShowMap extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_map);
-        /* Set the view of the radius */
+        /* Set the view of the radius indicator (top left) */
         radiusView = (TextView) findViewById(R.id.radiusView);
         radiusView.setText(String.valueOf(radius));
         /* set maps */
@@ -41,6 +42,8 @@ public class ShowMap extends ActionBarActivity {
             mMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
             // set the view to Granada
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(37.179373, -3.600186), 13));
+            // add the My Location Button
+            mMap.setMyLocationEnabled(true);
         }
     }
 
@@ -63,9 +66,14 @@ public class ShowMap extends ActionBarActivity {
     private void setMarkersInRadius(double radius) {
         if (mMap != null) {
             // --if map has been set, let's set up the marker looking by radius--
-            // cerco in tutto il vettore ottenuto dal JSON i posti
-            // con distanza minore di 'radius', e per ognuno addMarker()
-            mMap.addMarker(new MarkerOptions().position(new LatLng(37.178531, -3.606279)).title("Casa"));
+
+            /* BETTER VERSION
+                Add all the marker to the map, store them in a Hash table.
+                For every marker, see the distance from user and use
+                marker.isVisibile() TRUE or FALSE
+             */
+
+            Marker home = mMap.addMarker(new MarkerOptions().position(new LatLng(37.178531, -3.606279)).title("Home"));
         }
     }
 
